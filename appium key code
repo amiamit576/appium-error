@@ -1,3 +1,4 @@
 driver.execute_script('mobile: pressKey', {"keycode": 3}) ||driver.execute_script('mobile: pressKey', {"keycode": 187}) 
 driver.execute_script('mobile: pressKey', {"keycode": 4}) 
-driver.execute_script('mobile: pressKey', {"keycode": 2}) ||driver.execute_script('mobile: pressKey', {"keycode": 187}) 
+driver.execute_script('mobile: pressKey', {"keycode": 2}) 
+||driver.execute_script('mobile: pressKey', {"keycode": 187}) 
