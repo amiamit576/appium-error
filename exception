@@ -1,0 +1,45 @@
+To handle StaleElementReferenceException, you can use a try-except block to catch the exception and take appropriate action, such as refreshing the page or waiting
+for the element to become stable again. Here's how you can modify your code to handle StaleElementReferenceException:
+
+
+
+
+
+
+
+
+
+
+import time
+from appium.webdriver.common.exceptions import StaleElementReferenceException, NoSuchElementException
+from test_hotspot import Test_Hotspot
+from test_download import Test_Download
+from test_youtube import Test_Youtube
+
+class Test_YT_Down_Hotspot:
+
+    def test_yt_down(self, setup, setup2):
+        self.driver = setup
+        self.driver2 = setup2
+        self.hotspot = Test_Hotspot()
+        self.hotspot.test_hotspot_setting(self.driver, self.driver2)
+        time.sleep(2)
+        self.down = Test_Download()
+        self.down.test_download(self.driver)
+        time.sleep(5)
+        self.yt = Test_Youtube()
+        try:
+            self.yt.test_youtube(self.driver)
+        except (StaleElementReferenceException, NoSuchElementException) as e:
+            if isinstance(e, StaleElementReferenceException):
+                print("StaleElementReferenceException occurred. Retrying...")
+                # Add code here to handle StaleElementReferenceException, such as refreshing the page or waiting for the element to become stable again
+            elif isinstance(e, NoSuchElementException):
+                print("NoSuchElementException occurred. Handling...")
+                # Add code here to handle NoSuchElementException, such as navigating to a different page or waiting for the element to appear
+            time.sleep(3)  # Example: Wait for 3 seconds and retry
+            self.yt.test_youtube(self.driver)
+
+    test_instance.test_yt_down(driver1, driver2)
+    
+   
